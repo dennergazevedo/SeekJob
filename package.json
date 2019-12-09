@@ -1,0 +1,37 @@
+{
+  "name": "Seek-Job",
+  "version": "1.3.0",
+  "description": "SeekJob - Empregos",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "antd": "^3.26.0",
+    "expo": "^35.0.0",
+    "expo-asset": "~7.0.0",
+    "expo-font": "~7.0.0",
+    "galio-framework": "^0.6.3",
+    "prop-types": "^15.7.2",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+    "react-native-firebase": "^5.5.6",
+    "react-native-gesture-handler": "~1.3.0",
+    "react-native-modal-dropdown": "^0.6.2",
+    "react-navigation": "^3.11.0"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "^7.0.0"
+  },
+  "keywords": [
+    "SeekJob",
+    "SeekJob App",
+    "Emprego app",
+    "app de emprego",
+    "empregos"
+  ],
+  "author": "SeekJob <dennergazevedo@gmail.com>"
+}
