@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Dimensions, TouchableOpacity } from "react-nati
 // Galio components
 import { Block, Text, Button as GaButton, theme } from "galio-framework";
 // Argon themed components
-import { argonTheme, tabs } from "../constants/";
+import { seekTheme, tabs } from "../constants/";
 import { Button, Select, Icon, Input, Header, Switch } from "../components/";
 
 const { width } = Dimensions.get("screen");
@@ -94,42 +94,42 @@ class Elements extends React.Component {
           <Text
             h1
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Heading 1
           </Text>
           <Text
             h2
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Heading 2
           </Text>
           <Text
             h3
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Heading 3
           </Text>
           <Text
             h4
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Heading 4
           </Text>
           <Text
             h5
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Heading 5
           </Text>
           <Text
             p
             style={{ marginBottom: theme.SIZES.BASE / 2 }}
-            color={argonTheme.COLORS.DEFAULT}
+            color={seekTheme.COLORS.DEFAULT}
           >
             Paragraph
           </Text>
@@ -153,7 +153,7 @@ class Elements extends React.Component {
             right
             placeholder="Regular Custom"
             style={{
-              borderColor: argonTheme.COLORS.INFO,
+              borderColor: seekTheme.COLORS.INFO,
               borderRadius: 4,
               backgroundColor: "#fff"
             }}
@@ -167,9 +167,9 @@ class Elements extends React.Component {
               <Icon
                 size={11}
                 style={{ marginRight: 10 }}
-                color={argonTheme.COLORS.ICON}
+                color={seekTheme.COLORS.ICON}
                 name="search-zoom-in"
-                family="ArgonExtra"
+                family="Avenir"
               />
             }
           />
@@ -181,9 +181,9 @@ class Elements extends React.Component {
             iconContent={
               <Icon
                 size={11}
-                color={argonTheme.COLORS.ICON}
+                color={seekTheme.COLORS.ICON}
                 name="search-zoom-in"
-                family="ArgonExtra"
+                family="Avenir"
               />
             }
           />
@@ -200,14 +200,14 @@ class Elements extends React.Component {
                   width: 20,
                   height: 20,
                   borderRadius: 10,
-                  backgroundColor: argonTheme.COLORS.INPUT_SUCCESS
+                  backgroundColor: seekTheme.COLORS.INPUT_SUCCESS
                 }}
               >
                 <Icon
                   size={11}
-                  color={argonTheme.COLORS.ICON}
+                  color={seekTheme.COLORS.ICON}
                   name="g-check"
-                  family="ArgonExtra"
+                  family="Avenir"
                 />
               </Block>
             }
@@ -225,14 +225,14 @@ class Elements extends React.Component {
                   width: 20,
                   height: 20,
                   borderRadius: 10,
-                  backgroundColor: argonTheme.COLORS.INPUT_ERROR
+                  backgroundColor: seekTheme.COLORS.INPUT_ERROR
                 }}
               >
                 <Icon
                   size={11}
-                  color={argonTheme.COLORS.ICON}
+                  color={seekTheme.COLORS.ICON}
                   name="support"
-                  family="ArgonExtra"
+                  family="Avenir"
                 />
               </Block>
             }
@@ -363,7 +363,7 @@ class Elements extends React.Component {
           </Block>
 
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
-            <Header white back title="Title" navigation={this.props.navigation} bgColor={argonTheme.COLORS.ACTIVE} titleColor="white" iconColor="white" />
+            <Header white back title="Title" navigation={this.props.navigation} bgColor={seekTheme.COLORS.ACTIVE} titleColor="white" iconColor="white" />
           </Block>
 
           <Block style={{ marginBottom: theme.SIZES.BASE }}>
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingHorizontal: theme.SIZES.BASE * 2,
     marginTop: 44,
-    color: argonTheme.COLORS.HEADER
+    color: seekTheme.COLORS.HEADER
   },
   group: {
     paddingTop: theme.SIZES.BASE * 2
@@ -437,25 +437,25 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   inputDefault: {
-    borderBottomColor: argonTheme.COLORS.PLACEHOLDER
+    borderBottomColor: seekTheme.COLORS.PLACEHOLDER
   },
   inputTheme: {
-    borderBottomColor: argonTheme.COLORS.PRIMARY
+    borderBottomColor: seekTheme.COLORS.PRIMARY
   },
   inputTheme: {
-    borderBottomColor: argonTheme.COLORS.PRIMARY
+    borderBottomColor: seekTheme.COLORS.PRIMARY
   },
   inputInfo: {
-    borderBottomColor: argonTheme.COLORS.INFO
+    borderBottomColor: seekTheme.COLORS.INFO
   },
   inputSuccess: {
-    borderBottomColor: argonTheme.COLORS.SUCCESS
+    borderBottomColor: seekTheme.COLORS.SUCCESS
   },
   inputWarning: {
-    borderBottomColor: argonTheme.COLORS.WARNING
+    borderBottomColor: seekTheme.COLORS.WARNING
   },
   inputDanger: {
-    borderBottomColor: argonTheme.COLORS.ERROR
+    borderBottomColor: seekTheme.COLORS.ERROR
   },
   social: {
     width: theme.SIZES.BASE * 3.5,

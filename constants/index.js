@@ -1,11 +1,11 @@
-import argonTheme from './Theme';
+import seekTheme from './Theme';
 import articles from './articles';
 import Images from './Images';
 import tabs from './tabs';
 
 export {
   articles, 
-  argonTheme,
+  seekTheme,
   Images,
   tabs
 };

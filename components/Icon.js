@@ -3,9 +3,9 @@ import * as Font from 'expo-font';
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
 import { Icon } from 'galio-framework';
 
-import argonConfig from '../assets/font/argon.json';
-const ArgonExtra = require('../assets/font/argon.ttf');
-const IconArgonExtra = createIconSetFromIcoMoon(argonConfig, 'ArgonExtra');
+import seekTheme from '../assets/font/avenir.json';
+const Avenir = require('../assets/font/avenir.otf');
+const IconAvenir = createIconSetFromIcoMoon(seekTheme, 'Avenir');
 
 class IconExtra extends React.Component {
   state = {
@@ -13,7 +13,7 @@ class IconExtra extends React.Component {
   }
 
   async componentDidMount() {
-    await Font.loadAsync({ ArgonExtra: ArgonExtra });
+    await Font.loadAsync({ Avenir: Avenir });
     this.setState({ fontLoaded: true });
   }
 
@@ -21,8 +21,8 @@ class IconExtra extends React.Component {
     const { name, family, ...rest } = this.props;
     
     if (name && family && this.state.fontLoaded) {
-      if (family === 'ArgonExtra') {
-        return <IconArgonExtra name={name} family={family} {...rest} />;
+      if (family === 'Avenir') {
+        return <IconAvenir name={name} family={family} {...rest} />;
       }
       return <Icon name={name} family={family} {...rest} />;
     }

@@ -11,7 +11,7 @@ import { Block, Button, Text, theme, Icon } from "galio-framework";
 
 const { height, width } = Dimensions.get("screen");
 
-import argonTheme from "../constants/Theme";
+import seekTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
 class Onboarding extends React.Component {
@@ -20,7 +20,6 @@ class Onboarding extends React.Component {
 
     return (
       <Block flex style={styles.container}>
-        <StatusBar hidden />
         <Block flex center>
         <ImageBackground
             source={Images.Onboarding}
@@ -33,11 +32,6 @@ class Onboarding extends React.Component {
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 2 }}>
               <Block style={styles.title}>
-                <Block>
-                  <Text color="white" size={35} >
-                    
-                  </Text>
-                </Block>
 
                 <Block style={styles.subTitle}>
                   <Text color="white" size={14} onPress={() => navigation.navigate("Home")}>
@@ -51,7 +45,7 @@ class Onboarding extends React.Component {
                     iconContent={
                       <Icon
                         size={14}
-                        color={argonTheme.COLORS.ICON}
+                        color={seekTheme.COLORS.ICON}
                         name="user"
                         family="AntDesign"
                       />
@@ -64,7 +58,7 @@ class Onboarding extends React.Component {
                     iconContent={
                       <Icon
                         size={14}
-                        color={argonTheme.COLORS.ICON}
+                        color={seekTheme.COLORS.ICON}
                         name="lock"
                         family="AntDesign"
                       />
@@ -75,9 +69,9 @@ class Onboarding extends React.Component {
                   <Block center>
                     <Button
                       style={styles.button}
-                      color={argonTheme.COLORS.SECONDARY}
+                      color={seekTheme.COLORS.SECONDARY}
                       onPress={() => navigation.navigate("Home")}
-                      textStyle={{ color: argonTheme.COLORS.BLACK }}
+                      textStyle={{ color: seekTheme.COLORS.BLACK }}
                     >
                       Entrar
                     </Button>
@@ -109,8 +103,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
-    width: 120,
-    height: 220,
+    width: 113,
+    height: 202,
     zIndex: 2,
     position: 'relative',
     marginTop: '-60%'

@@ -11,13 +11,14 @@ import { Block } from "galio-framework";
 // screens
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
-import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import Login from "../screens/Login";
 import Notification from "../screens/Notification";
+import Contratar from "../screens/Contratar";
+import Contratando from "../screens/Contratando";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -121,52 +122,33 @@ const HomeStack = createStackNavigator(
     Notification: {
       screen: Notification,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Notification" navigation={navigation} />
+        header: <Header back title="Notification" navigation={navigation} />
       })
     },
 
-    Pro: {
-      screen: Pro,
+    Contratar: {
+      screen: Contratar,
       navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header left={<Block />} white transparent title="" navigation={navigation} />
-        ),
-        headerTransparent: true
-      })
-    }
-  },
-  {
-    cardStyle: {
-      backgroundColor: "#F8F9FE"
+        header: <Header search title="Contratar" navigation={navigation} />
+      }) 
     },
-    transitionConfig
-  }
-);
-// divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
-const AppStack = createDrawerNavigator(
-  {
-    Onboarding: {
-      screen: Onboarding,
-      navigationOptions: {
-        drawerLabel: () => {}
-      }
+
+    Contratando: {
+      screen: Contratando,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header search title="Contratando" navigation={navigation} />
+      }) 
     },
-    Home: {
-      screen: HomeStack,
+
+    Articles: {
+      screen: ArticlesStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} title="Home" />
+          <DrawerItem focused={focused} screen="Articles" title="Articles" />
         )
       })
     },
-    Profile: {
-      screen: ProfileStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Profile" title="Profile" />
-        )
-      })
-    },
+
     Account: {
       screen: Register,
       navigationOptions: navOpt => ({
@@ -176,6 +158,34 @@ const AppStack = createDrawerNavigator(
       })
     },
 
+  },
+
+  {
+    cardStyle: {
+      backgroundColor: "#F8F9FE"
+    },
+    transitionConfig
+  }
+);
+
+const AppStack = createDrawerNavigator(
+  {
+    Onboarding: {
+      screen: Onboarding,
+      navigationOptions: {
+        drawerLabel: () => {}
+      }
+    },
+
+    Home: {
+      screen: HomeStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} title="Home" />
+        )
+      })
+    },
+    
     Login: {
       screen: Login,
       navigationOptions: navOpt => ({
@@ -184,19 +194,20 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
+
+    Profile: {
+      screen: ProfileStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Profile" title="Profile" />
+        )
+      })
+    },
     Elements: {
       screen: ElementsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} screen="Elements" title="Elements" />
-        )
-      })
-    },
-    Articles: {
-      screen: ArticlesStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
         )
       })
     }

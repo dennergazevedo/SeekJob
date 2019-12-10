@@ -10,7 +10,7 @@ import {
 //galio
 import { Block, Text, theme } from "galio-framework";
 //argon
-import { articles, Images, argonTheme } from "../constants/";
+import { articles, Images, seekTheme } from "../constants/";
 import { Card } from "../components/";
 
 const { width } = Dimensions.get("screen");
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.SIZES.BASE,
     paddingHorizontal: theme.SIZES.BASE * 2,
     marginTop: 22,
-    color: argonTheme.COLORS.HEADER
+    color: seekTheme.COLORS.HEADER
   },
   group: {
     paddingTop: theme.SIZES.BASE

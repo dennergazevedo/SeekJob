@@ -9,7 +9,7 @@ import {
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
 import { Button, Icon, Input } from "../components";
-import { Images, argonTheme } from "../constants";
+import { Images, seekTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -74,7 +74,7 @@ class Register extends React.Component {
                         iconContent={
                           <Icon
                             size={16}
-                            color={argonTheme.COLORS.ICON}
+                            color={seekTheme.COLORS.ICON}
                             name="user"
                             family="AntDesign"
                             style={styles.inputIcons}
@@ -90,9 +90,9 @@ class Register extends React.Component {
                         iconContent={
                           <Icon
                             size={16}
-                            color={argonTheme.COLORS.ICON}
+                            color={seekTheme.COLORS.ICON}
                             name="ic_mail_24px"
-                            family="ArgonExtra"
+                            family="Avenir"
                             style={styles.inputIcons}
                           />
                         }
@@ -107,7 +107,7 @@ class Register extends React.Component {
                         iconContent={
                           <Icon
                             size={16}
-                            color={argonTheme.COLORS.ICON}
+                            color={seekTheme.COLORS.ICON}
                             name="idcard"
                             family="AntDesign"
                             style={styles.inputIcons}
@@ -124,7 +124,7 @@ class Register extends React.Component {
                         iconContent={
                           <Icon
                             size={16}
-                            color={argonTheme.COLORS.ICON}
+                            color={seekTheme.COLORS.ICON}
                             name="phone"
                             family="AntDesign"
                             style={styles.inputIcons}
@@ -141,18 +141,18 @@ class Register extends React.Component {
                         iconContent={
                           <Icon
                             size={16}
-                            color={argonTheme.COLORS.ICON}
+                            color={seekTheme.COLORS.ICON}
                             name="padlock-unlocked"
-                            family="ArgonExtra"
+                            family="Avenir"
                             style={styles.inputIcons}
                           />
                         }
                       />
                       <Block row style={styles.passwordCheck}>
-                        <Text size={12} color={argonTheme.COLORS.MUTED}>
+                        <Text size={12} color={seekTheme.COLORS.MUTED}>
                           Força da senha:
                         </Text>
-                        <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
+                        <Text bold size={12} color={seekTheme.COLORS.SUCCESS}>
                           {" "}
                           forte
                         </Text>
@@ -165,16 +165,16 @@ class Register extends React.Component {
                         checkboxStyle={{
                           borderWidth: 3
                         }}
-                        color={argonTheme.COLORS.PRIMARY}
+                        color={seekTheme.COLORS.PRIMARY}
                         label="Eu concordo com os "
                       />
-                      <Text bold size={14} color={argonTheme.COLORS.PRIMARY}>
+                      <Text bold size={14} color={seekTheme.COLORS.PRIMARY}>
                       Termos de Uso
                         </Text>
                     </Block>
                     <Block middle>
                       <Button color="primary" style={styles.createButton}>
-                        <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+                        <Text bold size={14} color={seekTheme.COLORS.WHITE}>
                           CRIAR CONTA
                         </Text>
                       </Button>
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     height: height * 0.80,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
-    shadowColor: argonTheme.COLORS.BLACK,
+    shadowColor: seekTheme.COLORS.BLACK,
     shadowOffset: {
       width: 0,
       height: 4
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   socialConnect: {
-    backgroundColor: argonTheme.COLORS.WHITE,
+    backgroundColor: seekTheme.COLORS.WHITE,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: "#8898AA"
   },
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 40,
     backgroundColor: "#fff",
-    shadowColor: argonTheme.COLORS.BLACK,
+    shadowColor: seekTheme.COLORS.BLACK,
     shadowOffset: {
       width: 0,
       height: 4
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     elevation: 1
   },
   socialTextButtons: {
-    color: argonTheme.COLORS.PRIMARY,
+    color: seekTheme.COLORS.PRIMARY,
     fontWeight: "800",
     fontSize: 14
   },

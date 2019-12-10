@@ -6,7 +6,7 @@ import { Block, GalioProvider } from 'galio-framework';
 
 
 import Screens from './navigation/Screens';
-import { Images, articles, argonTheme } from './constants';
+import { Images, articles, seekTheme } from './constants';
 
 // cache app images
 const assetImages = [
@@ -21,7 +21,7 @@ const assetImages = [
 
 loadAssetsAsync = async () => {
   await Font.loadAsync({
-    'ArgonExtra': require('./assets/font/argon.ttf')
+    'Avenir': require('./assets/font/avenir.otf')
   })
   this.setState({ fontLoaded: true })
 }
@@ -55,7 +55,7 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <GalioProvider theme={argonTheme}>
+        <GalioProvider theme={seekTheme}>
           <Block flex>
             <Screens />
           </Block>

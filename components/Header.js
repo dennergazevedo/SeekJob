@@ -3,10 +3,10 @@ import { withNavigation } from 'react-navigation';
 import { TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native';
 import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 
-import Icon from './Icon';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Input from './Input';
 import Tabs from './Tabs';
-import argonTheme from '../constants/Theme';
+import seekTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -14,10 +14,10 @@ const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 
 const BellButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Notification')}>
     <Icon
-      family="ArgonExtra"
+      family="AntDesign"
       size={16}
       name="bell"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      color={seekTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
     <Block middle style={styles.notify} />
   </TouchableOpacity>
@@ -26,20 +26,20 @@ const BellButton = ({isWhite, style, navigation}) => (
 const BasketButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
-      family="ArgonExtra"
-      size={16}
-      name="basket"
-      color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
+      family="AntDesign"
+      size={17}
+      name="support"
+      color={seekTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
 );
 
 const SearchButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Contratar')}>
     <Icon
       size={16}
-      family="Galio"
-      name="search-zoom-in"
+      family="EvilIcons"
+      name="search"
       color={theme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
   </TouchableOpacity>
@@ -116,7 +116,7 @@ class Header extends React.Component {
         placeholder="O que você está procurando?"
         placeholderTextColor={'#8898AA'}
         onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search-zoom-in" family="ArgonExtra" />}
+        iconContent={<Icon size={13} color={theme.COLORS.MUTED} name="search" family="AntDesign" />}
       />
     );
   }
@@ -125,15 +125,19 @@ class Header extends React.Component {
 
     return (
       <Block row style={styles.options}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
+        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Contratar')}>
           <Block row middle>
-            <Icon name="addusergroup" family="AntDesign" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON} />
+            <Icon
+            name="star"
+            family="AntDesign"
+            style={{ paddingRight: 8 }}
+            color={seekTheme.COLORS.ICON} />
             <Text size={16} style={styles.tabTitle}>{optionLeft || 'Contratar'}</Text>
           </Block>
         </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
+        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Contratando')}>
           <Block row middle>
-            <Icon name="bank" family="AntDesign" style={{ paddingRight: 8 }} color={argonTheme.COLORS.ICON}/>
+            <Icon name="bank" family="AntDesign" style={{ paddingRight: 8 }} color={seekTheme.COLORS.ICON}/>
             <Text size={16} style={styles.tabTitle}>{optionRight || 'Contratando'}</Text>
           </Block>
         </Button>
@@ -190,14 +194,16 @@ class Header extends React.Component {
           rightStyle={{ alignItems: 'center' }}
           left={
             <Icon 
-              name={back ? 'nav-left' : "menu-8"} family="ArgonExtra" 
-              size={14} onPress={this.handleLeftPress} 
-              color={iconColor || argonTheme.COLORS.ICON}/>
+              name={back ? 'caretleft' : "bars"}
+              family="AntDesign" 
+              size={14}
+              onPress={this.handleLeftPress} 
+              color={iconColor || seekTheme.COLORS.ICON}/>
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
           titleStyle={[
             styles.title,
-            { color: argonTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
+            { color: seekTheme.COLORS[white ? 'WHITE' : 'HEADER'] },
             titleColor && { color: titleColor }
           ]}
           {...props}
@@ -233,7 +239,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   notify: {
-    backgroundColor: argonTheme.COLORS.LABEL,
+    backgroundColor: seekTheme.COLORS.LABEL,
     borderRadius: 4,
     height: theme.SIZES.BASE / 2,
     width: theme.SIZES.BASE / 2,
@@ -254,7 +260,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 3,
-    borderColor: argonTheme.COLORS.BORDER
+    borderColor: seekTheme.COLORS.BORDER
   },
   options: {
     marginBottom: 24,
@@ -272,7 +278,7 @@ const styles = StyleSheet.create({
   tabTitle: {
     lineHeight: 19,
     fontWeight: '400',
-    color: argonTheme.COLORS.HEADER
+    color: seekTheme.COLORS.HEADER
   },
 });
 

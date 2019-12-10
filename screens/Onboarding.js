@@ -10,7 +10,7 @@ import { Block, Button, Text, theme, Icon } from "galio-framework";
 
 const { height, width } = Dimensions.get("screen");
 
-import argonTheme from "../constants/Theme";
+import seekTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
 class Onboarding extends React.Component {
@@ -40,9 +40,9 @@ class Onboarding extends React.Component {
                 <Block center>
                   <Button
                     style={styles.button}
-                    color={argonTheme.COLORS.SECONDARY}
+                    color={seekTheme.COLORS.SECONDARY}
                     onPress={() => navigation.navigate("Login")}
-                    textStyle={{ color: argonTheme.COLORS.BLACK }}
+                    textStyle={{ color: seekTheme.COLORS.BLACK }}
                   >
                     Login
                   </Button>
@@ -50,9 +50,9 @@ class Onboarding extends React.Component {
                   <Block center>
                     <Button
                       style={styles.button}
-                      color={argonTheme.COLORS.LABEL}
+                      color={seekTheme.COLORS.LABEL}
                       onPress={() => navigation.navigate("Account")}
-                      textStyle={{ color: argonTheme.COLORS.WHITE }}
+                      textStyle={{ color: seekTheme.COLORS.WHITE }}
                     >
                       Cadastre-se
                     </Button>
@@ -61,7 +61,7 @@ class Onboarding extends React.Component {
               </Block>
               <Block center>
                 <Text
-                color={argonTheme.COLORS.SECONDARY}>
+                color={seekTheme.COLORS.SECONDARY}>
                   &copy;SeekJob
                 </Text>
               </Block>
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
-    width: 120,
-    height: 220,
+    width: 113,
+    height: 202,
     zIndex: 2,
     position: 'relative',
     marginTop: '-60%'

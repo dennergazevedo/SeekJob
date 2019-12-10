@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
-import Icon from "./Icon";
-import argonTheme from "../constants/Theme";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import seekTheme from "../constants/Theme";
 
 class DrawerItem extends React.Component {
   renderIcon = () => {
@@ -13,57 +13,49 @@ class DrawerItem extends React.Component {
       case "Home":
         return (
           <Icon
-            name="shop"
-            family="ArgonExtra"
+            name="home"
+            family="AntDesign"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : seekTheme.COLORS.PRIMARY}
           />
         );
       case "Elements":
         return (
           <Icon
-            name="map-big"
-            family="ArgonExtra"
+            name="check"
+            family="AntDesign"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.ERROR}
-          />
-        );
-      case "Articles":
-        return (
-          <Icon
-            name="spaceship"
-            family="ArgonExtra"
-            size={12}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : seekTheme.COLORS.ERROR}
           />
         );
       
       case "Login":
           return (
             <Icon
-              name="engine-start"
-              family="ArgonExtra"
+              name="lock"
+              family="AntDesign"
               size={12}
-              color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+              color={focused ? "white" : seekTheme.COLORS.PRIMARY}
             />
           );
 
       case "Profile":
         return (
           <Icon
-            name="chart-pie-35"
-            family="ArgonExtra"
+            name="user"
+            family="AntDesign"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.WARNING}
+            color={focused ? "white" : seekTheme.COLORS.WARNING}
           />
         );
+
       case "Account":
         return (
           <Icon
             name="calendar-date"
-            family="ArgonExtra"
+            family="AntDesign"
             size={12}
-            color={focused ? "white" : argonTheme.COLORS.INFO}
+            color={focused ? "white" : seekTheme.COLORS.INFO}
           />
         );
       case "Getting Started":
@@ -97,6 +89,15 @@ class DrawerItem extends React.Component {
             {title}
           </Text>
         </Block>
+        <Block>
+        <Text
+            size={9}
+            bold={focused ? true : false}
+            color={focused ? "white" : "rgba(216,216,216,1)"}
+          >
+            ➜
+          </Text>
+        </Block>
       </Block>
     );
   }
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14
   },
   activeStyle: {
-    backgroundColor: argonTheme.COLORS.ACTIVE,
+    backgroundColor: seekTheme.COLORS.ACTIVE,
     borderRadius: 4
   },
   shadow: {
