@@ -45,7 +45,6 @@ class Home extends React.Component {
   render() {
     return (
       <Block flex center style={styles.home}>
-        {window.alert(`Bem vindo(a) de volta, ${this.state.displayName}!`)}
         {this.renderArticles()}
       </Block>
     );

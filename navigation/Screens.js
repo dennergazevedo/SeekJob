@@ -8,7 +8,6 @@ import {
 
 // screens
 import Home from "../screens/Home";
-import Onboarding from "../screens/Onboarding";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
@@ -187,13 +186,6 @@ const HomeStack = createStackNavigator(
 
 const AppStack = createDrawerNavigator(
   {
-    Onboarding: {
-      screen: Onboarding,
-      navigationOptions: {
-        drawerLabel: () => {}
-      }
-    },
-
     Home: {
       screen: HomeStack,
       navigationOptions: navOpt => ({

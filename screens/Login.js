@@ -113,18 +113,22 @@ class Login extends React.Component {
                       onPress={this.handleLogin}
                       textStyle={{ color: seekTheme.COLORS.BLACK }}
                     >
-                      Entrar
+                      <Text bold size={13} color={seekTheme.COLORS.BUTTON_COLOR}>
+                          Entrar
+                        </Text>
                     </Button>
                   </Block>
                   
                   <Block center>
                     <Button
                       style={styles.button}
-                      color={seekTheme.COLORS.LABEL}
+                      color={seekTheme.COLORS.BUTTON_COLOR}
                       onPress={() => navigation.navigate("Register")}
                       textStyle={{ color: seekTheme.COLORS.WHITE }}
                     >
-                      Cadastre-se
+                      <Text bold size={13} color={seekTheme.COLORS.WHITE}>
+                          Cadastre-se
+                        </Text>
                     </Button>
                   </Block>
                 </KeyboardAvoidingView>
@@ -147,8 +151,8 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    width: width - theme.SIZES.BASE * 12,
-    height: theme.SIZES.BASE * 3,
+    width: width - theme.SIZES.BASE * 13,
+    height: theme.SIZES.BASE * 2.5,
     shadowRadius: 0,
     shadowOpacity: 0,
     borderRadius: 100

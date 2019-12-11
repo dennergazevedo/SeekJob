@@ -17,15 +17,16 @@ const { width, height } = Dimensions.get("screen");
 
 class Register extends React.Component {
     state={
-      name:"",
+      name: "",
       password:"",
       email:"",
-      date:"",
+      phone: "",
       errorMessage: null
     }
 
     handleSignUp = () => {
-      firebase
+      if(this.state.name != "" && this.state.phone != ""){
+        firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(userCredentials => {
@@ -34,6 +35,9 @@ class Register extends React.Component {
           });
         })
         .catch(error => this.setState({ errorMessage: error.message }));
+      }else{
+        alert('Preencha todos os dados!');
+      } 
     };
 
   render() {
@@ -150,21 +154,30 @@ class Register extends React.Component {
                     <Block width={width * 0.8}>
                       <Input
                         borderless
-                        placeholder="Nascimento"
+                        placeholder="Telefone"
                         iconContent={
                           <Icon
                             size={16}
                             color={seekTheme.COLORS.ICON}
-                            name="calendar"
+                            name="phone"
                             family="AntDesign"
                             style={styles.inputIcons}
                           />
                         }
                         autoCapitalize="none"
-                        onChangeText={date => this.setState({ date })}
-                        value={this.state.date}
+                        onChangeText={phone => this.setState({ phone })}
+                        value={this.state.phone}
                       />
                     </Block>
+
+                    <Block center>
+                      {
+                      this.state.errorMessage && 
+                            <Text bold size={12} color={seekTheme.COLORS.BUTTON_COLOR}>
+                            {this.state.errorMessage}
+                            </Text>
+        }
+                      </Block>
 
 
                     <Block row width={width * 0.75}>
