@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   text:{
     color: "#FFF",
-    marginTop: 10,
+    marginTop: 30,
     textAlign: "center",
   }
 

@@ -87,6 +87,7 @@ class Register extends React.Component {
                     style={{ flex: 1 }}
                     behavior="padding"
                     enabled
+                    keyboardVerticalOffset={320}
                   >
                     <Block width={width * 0.8} style={{ marginBottom: 5 }}>
                       <Input

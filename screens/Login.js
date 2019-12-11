@@ -4,10 +4,12 @@ import {
   ImageBackground,
   Image,
   StyleSheet,
-  StatusBar,
   Dimensions
 } from "react-native";
 import { Block, Button, Text, theme, Icon } from "galio-framework";
+
+import {KeyboardAvoidingView} from 'react-native';
+import { Platform } from 'react-native';
 
 const { height, width } = Dimensions.get("screen");
 
@@ -31,8 +33,9 @@ class Login extends React.Component {
       .signInWithEmailAndPassword(email, password)
       .catch(error=> this.setState({ errorMessage: error.message }));
   };
-
+  
   render() {
+    
     const { navigation } = this.props;
 
     return (
@@ -43,19 +46,22 @@ class Login extends React.Component {
             style={{ height, width, zIndex: 1 }}
           />
         </Block>
-        <Block center>
-          <Image source={Images.LogoOnboarding} style={styles.logo} />
-        </Block>
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 2 }}>
-              <Block style={styles.title}>
+            <KeyboardAvoidingView 
+              style={styles.containerStyle} 
+              behavior="padding" 
+              enabled
+              keyboardVerticalOffset={320}
+            >
+              <Block center>
+                <Image source={Images.LogoOnboarding} style={styles.logo} />
+              </Block>
                 <Block style={styles.subTitle}>
                   <Text color="white" size={12} onPress={() => navigation.navigate("Home")}>
                     Esqueceu sua senha?
                   </Text>
                 </Block>
-
-                <Block>
                   <Input 
                     placeholder=" E-mail"
                     autoCapitalize="none"
@@ -70,7 +76,6 @@ class Login extends React.Component {
                       />
                     }
                   />
-                </Block>
                 <Block>
                   <Input 
                     placeholder=" Senha"
@@ -122,10 +127,10 @@ class Login extends React.Component {
                       Cadastre-se
                     </Button>
                   </Block>
-                </Block>
+                </KeyboardAvoidingView>
               </Block>
-          </Block>
-        </Block>
+            </Block>
+      </Block>
     );
   }
 }

@@ -6,8 +6,7 @@ import * as firebase from 'firebase';
 
 import { Card } from '../components';
 import articles from '../constants/articles';
-import seekTheme from "../constants/Theme";
-const { height, width } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 class Home extends React.Component {
 
@@ -46,7 +45,7 @@ class Home extends React.Component {
   render() {
     return (
       <Block flex center style={styles.home}>
-        <Text>Bem vindo(a) de volta, {this.state.displayName}!</Text>
+        {window.alert(`Bem vindo(a) de volta, ${this.state.displayName}!`)}
         {this.renderArticles()}
       </Block>
     );

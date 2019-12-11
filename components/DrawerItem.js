@@ -24,7 +24,7 @@ class DrawerItem extends React.Component {
       case "Logout":
         return (
           <Icon
-            name="logout"
+            name="close"
             family="AntDesign"
             size={12}
             color={focused ? "white" : seekTheme.COLORS.PRIMARY}
