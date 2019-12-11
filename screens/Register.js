@@ -20,6 +20,7 @@ class Register extends React.Component {
       name:"",
       password:"",
       email:"",
+      date:"",
       errorMessage: null
     }
 
@@ -107,25 +108,24 @@ class Register extends React.Component {
                         value={this.state.name}
                       />
                     </Block>
-
-                    <Block width={width * 0.8} style={{ marginBottom: 5 }}>
-                      <Input
-                        borderless
-                        placeholder="Email"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={seekTheme.COLORS.ICON}
-                            name="inbox"
-                            family="AntDesign"
-                            style={styles.inputIcons}
-                          />
-                        }
-                        autoCapitalize="none"
-                        onChangeText={email => this.setState({ email })}
-                        value={this.state.email}
-                      />
-                    </Block>
+                      <Block width={width * 0.8} style={{ marginBottom: 5 }}>
+                        <Input
+                          borderless
+                          placeholder="Email"
+                          iconContent={
+                            <Icon
+                              size={16}
+                              color={seekTheme.COLORS.ICON}
+                              name="inbox"
+                              family="AntDesign"
+                              style={styles.inputIcons}
+                            />
+                          }
+                          autoCapitalize="none"
+                          onChangeText={email => this.setState({ email })}
+                          value={this.state.email}
+                        />
+                      </Block>
 
                     <Block width={width * 0.8}>
                       <Input
@@ -145,15 +145,25 @@ class Register extends React.Component {
                         onChangeText={password => this.setState({ password })}
                         value={this.state.password}
                       />
-                      <Block row style={styles.passwordCheck}>
-                        <Text size={12} color={seekTheme.COLORS.MUTED}>
-                          Força da senha:
-                        </Text>
-                        <Text bold size={12} color={seekTheme.COLORS.SUCCESS}>
-                          {" "}
-                          forte
-                        </Text>
-                      </Block>
+                    </Block>
+
+                    <Block width={width * 0.8}>
+                      <Input
+                        borderless
+                        placeholder="Nascimento"
+                        iconContent={
+                          <Icon
+                            size={16}
+                            color={seekTheme.COLORS.ICON}
+                            name="calendar"
+                            family="AntDesign"
+                            style={styles.inputIcons}
+                          />
+                        }
+                        autoCapitalize="none"
+                        onChangeText={date => this.setState({ date })}
+                        value={this.state.date}
+                      />
                     </Block>
 
 
