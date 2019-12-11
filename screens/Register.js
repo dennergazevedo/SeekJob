@@ -21,23 +21,32 @@ class Register extends React.Component {
       password:"",
       email:"",
       phone: "",
+      check: true,
       errorMessage: null
     }
 
+    checkAlert = () => {
+      this.state.check = !this.state.check
+    };
+
     handleSignUp = () => {
-      if(this.state.name != "" && this.state.phone != ""){
-        firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(userCredentials => {
-          return userCredentials.user.updateProfile({
-            displayName: this.state.name
-          });
-        })
-        .catch(error => this.setState({ errorMessage: error.message }));
+      if(this.state.check == true){
+        if(this.state.name != "" && this.state.phone != "" && this.state.check == true){
+          firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .then(userCredentials => {
+            return userCredentials.user.updateProfile({
+              displayName: this.state.name
+            });
+          })
+          .catch(error => this.setState({ errorMessage: error.message }));
+        }else{
+          alert('Preencha todos os dados!');
+        }
       }else{
-        alert('Preencha todos os dados!');
-      } 
+        alert('Você precisa concordar com os termos de uso!')
+      }
     };
 
   render() {
@@ -153,6 +162,8 @@ class Register extends React.Component {
 
                     <Block width={width * 0.8}>
                       <Input
+                        type="phone-pad"
+                        maxLength={11}
                         borderless
                         placeholder="Telefone"
                         iconContent={
@@ -176,20 +187,35 @@ class Register extends React.Component {
                             <Text bold size={12} color={seekTheme.COLORS.BUTTON_COLOR}>
                             {this.state.errorMessage}
                             </Text>
-        }
+                      }
                       </Block>
 
 
-                    <Block row width={width * 0.75}>
+                    <Block center row width={width * 0.75}>
                       <Checkbox
+                        label=""
                         checkboxStyle={{
                           borderWidth: 3
                         }}
+                        value={this.state.check}
+                        onChange={() => this.checkAlert()}
                         color={seekTheme.COLORS.PRIMARY}
-                        label="Eu concordo com os "
                       />
-                      <Text bold size={14} color={seekTheme.COLORS.PRIMARY}>
-                      Termos de Uso
+                      <Text 
+                          style={{
+                            marginLeft: 5
+                          }}
+                          size={14}
+                          color={seekTheme.COLORS.DEFAULT}>
+                            Eu concordo com os
+                      </Text>
+                      <Text style={{
+                            marginLeft: 5
+                          }}
+                          bold
+                          size={14}
+                          color={seekTheme.COLORS.PRIMARY}>
+                        Termos de Uso
                         </Text>
                     </Block>
                     <Block middle>
