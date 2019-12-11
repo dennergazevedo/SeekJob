@@ -1,11 +1,12 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Block, Text, theme } from "galio-framework";
+import { Block, Text, theme, Button } from "galio-framework";
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import seekTheme from "../constants/Theme";
 
 class DrawerItem extends React.Component {
+
   renderIcon = () => {
     const { title, focused } = this.props;
 
@@ -19,6 +20,17 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : seekTheme.COLORS.PRIMARY}
           />
         );
+
+      case "Logout":
+        return (
+          <Icon
+            name="logout"
+            family="AntDesign"
+            size={12}
+            color={focused ? "white" : seekTheme.COLORS.PRIMARY}
+          />
+        );
+
       case "Elements":
         return (
           <Icon
@@ -28,16 +40,6 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : seekTheme.COLORS.ERROR}
           />
         );
-      
-      case "Login":
-          return (
-            <Icon
-              name="lock"
-              family="AntDesign"
-              size={12}
-              color={focused ? "white" : seekTheme.COLORS.PRIMARY}
-            />
-          );
 
       case "Profile":
         return (
@@ -49,19 +51,6 @@ class DrawerItem extends React.Component {
           />
         );
 
-      case "Account":
-        return (
-          <Icon
-            name="calendar-date"
-            family="AntDesign"
-            size={12}
-            color={focused ? "white" : seekTheme.COLORS.INFO}
-          />
-        );
-      case "Getting Started":
-        return <Icon />;
-      case "Log out":
-        return <Icon />;
       default:
         return null;
     }

@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import { Card } from '../components';
 import articles from '../constants/articles';
 import seekTheme from "../constants/Theme";
-const { width } = Dimensions.get('screen');
+const { height, width } = Dimensions.get("screen");
 
 class Home extends React.Component {
 
@@ -46,15 +46,7 @@ class Home extends React.Component {
   render() {
     return (
       <Block flex center style={styles.home}>
-        <Text>hi {this.state.displayName}</Text>
-        <Button
-                    style={styles.button}
-                    color={seekTheme.COLORS.SECONDARY}
-                    onPress={this.signOutUser}
-                    textStyle={{ color: seekTheme.COLORS.BLACK }}
-                  >
-                    Logout
-                  </Button>
+        <Text>Bem vindo(a) de volta, {this.state.displayName}!</Text>
         {this.renderArticles()}
       </Block>
     );

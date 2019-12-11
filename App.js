@@ -1,3 +1,4 @@
+
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 
@@ -7,8 +8,7 @@ import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Loading from "./screens/Loading";
-
-
+import Screen from "./navigation/Screens";
 
 var firebaseConfig = {
   apiKey: "AIzaSyDuGBWWPM1yx1sj9cF6tmyB6TnzN7RtdfQ",
@@ -24,7 +24,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const AppStack = createStackNavigator({
-	Home: Home
+	Home: Screen
 });
 
 const AuthStack = createStackNavigator({

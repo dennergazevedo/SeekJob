@@ -49,16 +49,6 @@ class Login extends React.Component {
         <Block flex space="between" style={styles.padded}>
             <Block flex space="around" style={{ zIndex: 2 }}>
               <Block style={styles.title}>
-
-              <Block>
-                {
-                this.state.errorMessage && 
-                  <Text color="white" size={14}>
-                    {this.state.errorMessage}
-                  </Text>
-  }
-                </Block>
-
                 <Block style={styles.subTitle}>
                   <Text color="white" size={12} onPress={() => navigation.navigate("Home")}>
                     Esqueceu sua senha?
@@ -97,6 +87,18 @@ class Login extends React.Component {
                     onChangeText={password => this.setState({ password })}
                     value={this.state.password}
                   />
+                </Block>
+
+                <Block>
+                {
+                this.state.errorMessage && 
+                  <Text
+                    color="white"
+                    size={14}
+                    >
+                      {this.state.errorMessage}
+                  </Text>
+  }
                 </Block>
 
                   <Block center>

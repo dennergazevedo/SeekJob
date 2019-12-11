@@ -17,6 +17,7 @@ import Login from "../screens/Login";
 import Notification from "../screens/Notification";
 import Contratar from "../screens/Contratar";
 import Contratando from "../screens/Contratando";
+import LogOut from "../screens/LogOut";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -152,6 +153,23 @@ const HomeStack = createStackNavigator(
       })
     },
 
+    LogOut: {
+      screen: LogOut,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Login" title="Login" onPress={this.signOutUser()}/>
+        )
+      })
+    },
+
+    Login: {
+      screen: Login,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Login" title="Login" />
+        )
+      })
+    },
   },
 
   {
@@ -179,15 +197,6 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    
-    Login: {
-      screen: Login,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Login" title="Login" />
-        )
-      })
-    },
 
     Profile: {
       screen: ProfileStack,
@@ -197,6 +206,8 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
+
+
     Elements: {
       screen: ElementsStack,
       navigationOptions: navOpt => ({
@@ -204,7 +215,16 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} screen="Elements" title="Elements" />
         )
       })
-    }
+    },
+
+    LogOut: {
+      screen: HomeStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Logout" title="Logout" onPress={this.signOutUser}/>
+        )
+      })
+    },
   },
   Menu
 );

@@ -24,7 +24,7 @@ const BellButton = ({isWhite, style, navigation}) => (
 );
 
 const BasketButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Elements')}>
     <Icon
       family="AntDesign"
       size={17}
@@ -70,7 +70,7 @@ class Header extends React.Component {
       case 'Deals':
         return ([
           <BellButton key='chat-categories' navigation={navigation} />,
-          <BasketButton key='basket-categories' navigation={navigation} />
+          <BasketButton key='basket-categories' navigation={navigation} />,
         ]);
       case 'Categories':
         return ([
