@@ -14,7 +14,24 @@ const { height, width } = Dimensions.get("screen");
 import seekTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
-class Onboarding extends React.Component {
+import * as firebase from 'firebase';
+
+class Login extends React.Component {
+  state = {
+    email:"",
+    password:"",
+    errorMessage: null
+  }
+
+  handleLogin = () => {
+    const {email, password} = this.state;
+  
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(error=> this.setState({ errorMessage: error.message }));
+  };
+
   render() {
     const { navigation } = this.props;
 
@@ -33,8 +50,17 @@ class Onboarding extends React.Component {
             <Block flex space="around" style={{ zIndex: 2 }}>
               <Block style={styles.title}>
 
+              <Block>
+                {
+                this.state.errorMessage && 
+                  <Text color="white" size={14}>
+                    {this.state.errorMessage}
+                  </Text>
+  }
+                </Block>
+
                 <Block style={styles.subTitle}>
-                  <Text color="white" size={14} onPress={() => navigation.navigate("Home")}>
+                  <Text color="white" size={12} onPress={() => navigation.navigate("Home")}>
                     Esqueceu sua senha?
                   </Text>
                 </Block>
@@ -42,6 +68,9 @@ class Onboarding extends React.Component {
                 <Block>
                   <Input 
                     placeholder=" E-mail"
+                    autoCapitalize="none"
+                    onChangeText={email => this.setState({ email })}
+                    value = {this.state.email}
                     iconContent={
                       <Icon
                         size={14}
@@ -63,6 +92,10 @@ class Onboarding extends React.Component {
                         family="AntDesign"
                       />
                     }
+                    secureTextEntry
+                    autoCapitalize="none"
+                    onChangeText={password => this.setState({ password })}
+                    value={this.state.password}
                   />
                 </Block>
 
@@ -70,10 +103,21 @@ class Onboarding extends React.Component {
                     <Button
                       style={styles.button}
                       color={seekTheme.COLORS.SECONDARY}
-                      onPress={() => navigation.navigate("Home")}
+                      onPress={this.handleLogin}
                       textStyle={{ color: seekTheme.COLORS.BLACK }}
                     >
                       Entrar
+                    </Button>
+                  </Block>
+                  
+                  <Block center>
+                    <Button
+                      style={styles.button}
+                      color={seekTheme.COLORS.LABEL}
+                      onPress={() => navigation.navigate("Register")}
+                      textStyle={{ color: seekTheme.COLORS.WHITE }}
+                    >
+                      Cadastre-se
                     </Button>
                   </Block>
                 </Block>
@@ -114,9 +158,9 @@ const styles = StyleSheet.create({
     marginTop:'-5%'
   },
   subTitle: {
-    marginTop: 5,
-    marginLeft: 190,
-  }
+    marginTop: 35,
+    marginLeft: 170,
+  },
 });
 
-export default Onboarding;
+export default Login;

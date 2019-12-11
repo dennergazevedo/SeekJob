@@ -7,7 +7,7 @@ import articles from '../constants/articles';
 const { width } = Dimensions.get('screen');
 
 
-class Home extends React.Component {
+class Notification extends React.Component {
   renderArticles = () => {
     return (
       <ScrollView
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Notification;

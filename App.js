@@ -1,14 +1,53 @@
-import React from 'react';
-import { Image } from 'react-native';
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
-import { Block, GalioProvider } from 'galio-framework';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+
+import * as firebase from 'firebase'
+
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
+import Loading from "./screens/Loading";
 
 
-import Screens from './navigation/Screens';
-import { Images, articles, seekTheme } from './constants';
 
-// cache app images
+var firebaseConfig = {
+  apiKey: "AIzaSyDuGBWWPM1yx1sj9cF6tmyB6TnzN7RtdfQ",
+  authDomain: "seekjob-1e7af.firebaseapp.com",
+  databaseURL: "https://seekjob-1e7af.firebaseio.com",
+  projectId: "seekjob-1e7af",
+  storageBucket: "seekjob-1e7af.appspot.com",
+  messagingSenderId: "671551140323",
+  appId: "1:671551140323:web:9acbc5fe306205cc92b0d6",
+  measurementId: "G-KZX7K9EY0L"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const AppStack = createStackNavigator({
+	Home: Home
+});
+
+const AuthStack = createStackNavigator({
+	Login: Login,
+	Register: Register
+});
+
+export default createAppContainer(
+	createSwitchNavigator(
+		{
+			Loading: Loading,
+			App: AppStack,
+			Auth: AuthStack
+		},
+		{
+			initialRouteName:"Loading"
+		}
+  )
+);
+
+import { Images, articles } from './constants';
+
+
 const assetImages = [
   Images.Onboarding,
   Images.LogoOnboarding,
@@ -28,56 +67,3 @@ loadAssetsAsync = async () => {
 
 // cache product images
 articles.map(article => assetImages.push(article.image));
-
-function cacheImages(images) {
-  return images.map(image => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.fromModule(image).downloadAsync();
-    }
-  });
-}
-
-export default class App extends React.Component {
-  state = {
-    isLoadingComplete: false,
-  }
-  
-  render() {
-    if(!this.state.isLoadingComplete) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <GalioProvider theme={seekTheme}>
-          <Block flex>
-            <Screens />
-          </Block>
-        </GalioProvider>
-      );
-    }
-  }
-
-  _loadResourcesAsync = async () => {
-    return Promise.all([
-      ...cacheImages(assetImages),
-    ]);
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
-  };
-
-  _handleFinishLoading = () => {
-    this.setState({ isLoadingComplete: true });
-  };
-
-}

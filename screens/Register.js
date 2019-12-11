@@ -8,12 +8,33 @@ import {
 } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
+import * as firebase from 'firebase';
+
 import { Button, Icon, Input } from "../components";
 import { Images, seekTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
 class Register extends React.Component {
+    state={
+      name:"",
+      password:"",
+      email:"",
+      errorMessage: null
+    }
+
+    handleSignUp = () => {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(userCredentials => {
+          return userCredentials.user.updateProfile({
+            displayName: this.state.name
+          });
+        })
+        .catch(error => this.setState({ errorMessage: error.message }));
+    };
+
   render() {
     return (
       <Block flex middle>
@@ -32,8 +53,8 @@ class Register extends React.Component {
                   <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
                     <Block row>
                       <Icon
-                        name="logo-facebook"
-                        family="Ionicon"
+                        name="facebook"
+                        family="AntDesign"
                         size={14}
                         color={"black"}
                         style={{ marginTop: 2, marginRight: 5 }}
@@ -44,8 +65,8 @@ class Register extends React.Component {
                   <Button style={styles.socialButtons}>
                     <Block row>
                       <Icon
-                        name="logo-google"
-                        family="Ionicon"
+                        name="google"
+                        family="AntDesign"
                         size={14}
                         color={"black"}
                         style={{ marginTop: 2, marginRight: 5 }}
@@ -67,7 +88,7 @@ class Register extends React.Component {
                     behavior="padding"
                     enabled
                   >
-                    <Block width={width * 0.8} style={{ marginBottom: 1 }}>
+                    <Block width={width * 0.8} style={{ marginBottom: 5 }}>
                       <Input
                         borderless
                         placeholder="Nome"
@@ -80,10 +101,13 @@ class Register extends React.Component {
                             style={styles.inputIcons}
                           />
                         }
+                        autoCapitalize="none"
+                        onChangeText={name => this.setState({ name })}
+                        value={this.state.name}
                       />
                     </Block>
 
-                    <Block width={width * 0.8} style={{ marginBottom: 1 }}>
+                    <Block width={width * 0.8} style={{ marginBottom: 5 }}>
                       <Input
                         borderless
                         placeholder="Email"
@@ -91,45 +115,14 @@ class Register extends React.Component {
                           <Icon
                             size={16}
                             color={seekTheme.COLORS.ICON}
-                            name="ic_mail_24px"
-                            family="Avenir"
-                            style={styles.inputIcons}
-                          />
-                        }
-                      />
-                    </Block>
-
-
-                    <Block width={width * 0.8} style={{ marginBottom: 1 }}>
-                      <Input
-                        borderless
-                        placeholder="CPF / CNPJ"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={seekTheme.COLORS.ICON}
-                            name="idcard"
+                            name="inbox"
                             family="AntDesign"
                             style={styles.inputIcons}
                           />
                         }
-                      />
-                    </Block>
-
-
-                    <Block width={width * 0.8} style={{ marginBottom: 1 }}>
-                      <Input
-                        borderless
-                        placeholder="Telefone / Celular"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={seekTheme.COLORS.ICON}
-                            name="phone"
-                            family="AntDesign"
-                            style={styles.inputIcons}
-                          />
-                        }
+                        autoCapitalize="none"
+                        onChangeText={email => this.setState({ email })}
+                        value={this.state.email}
                       />
                     </Block>
 
@@ -142,11 +135,14 @@ class Register extends React.Component {
                           <Icon
                             size={16}
                             color={seekTheme.COLORS.ICON}
-                            name="padlock-unlocked"
-                            family="Avenir"
+                            name="lock"
+                            family="AntDesign"
                             style={styles.inputIcons}
                           />
                         }
+                        autoCapitalize="none"
+                        onChangeText={password => this.setState({ password })}
+                        value={this.state.password}
                       />
                       <Block row style={styles.passwordCheck}>
                         <Text size={12} color={seekTheme.COLORS.MUTED}>
@@ -173,7 +169,10 @@ class Register extends React.Component {
                         </Text>
                     </Block>
                     <Block middle>
-                      <Button color="primary" style={styles.createButton}>
+                      <Button color="primary"
+                      style={styles.createButton}
+                      onPress={this.handleSignUp}
+                      >
                         <Text bold size={14} color={seekTheme.COLORS.WHITE}>
                           CRIAR CONTA
                         </Text>

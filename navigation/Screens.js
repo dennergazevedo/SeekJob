@@ -6,8 +6,6 @@ import {
   createAppContainer
 } from "react-navigation";
 
-import { Block } from "galio-framework";
-
 // screens
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
@@ -37,10 +35,6 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     const thisSceneIndex = scene.index;
     const width = layout.initWidth;
 
-    const scale = position.interpolate({
-      inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-      outputRange: [4, 1, 1]
-    });
     const opacity = position.interpolate({
       inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
       outputRange: [0, 1, 1]
@@ -149,11 +143,11 @@ const HomeStack = createStackNavigator(
       })
     },
 
-    Account: {
+    Register: {
       screen: Register,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Account" />
+          <DrawerItem focused={focused} screen="Register" title="Register" />
         )
       })
     },
