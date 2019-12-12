@@ -4,23 +4,32 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  Image
 } from "react-native";
-import { Block, Checkbox, Text, theme } from "galio-framework";
+import { Block, Checkbox, Text } from "galio-framework";
 
 import * as firebase from 'firebase';
 
 import { Button, Icon, Input } from "../components";
 import { Images, seekTheme } from "../constants";
 
+import UserPermissions from "../utilities/UserPermissions";
+
+import * as ImagePicker from 'expo-image-picker'
+
 const { width, height } = Dimensions.get("screen");
 
 class Register extends React.Component {
     state={
-      name: "",
-      password:"",
-      email:"",
-      phone: "",
+      user:{
+        avatar:null,
+        name: "",
+        password:"",
+        email:"",
+        phone: ""
+      },
       check: true,
       errorMessage: null
     }
@@ -29,15 +38,29 @@ class Register extends React.Component {
       this.state.check = !this.state.check
     };
 
+    handlePickAvatar = async () => {
+      UserPermissions.getCameraPermission()
+    
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3]
+      })
+    
+      if(!result.cancelled){
+      this.setState({user: {...this.state.user, avatar: result.uri} });
+      }
+    };
+
     handleSignUp = () => {
-      if(this.state.check == true){
-        if(this.state.name != "" && this.state.phone != "" && this.state.check == true){
+      if(this.state.check === true){
+        if(this.state.user.name != "" && this.state.user.phone != ""){
           firebase
           .auth()
-          .createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .createUserWithEmailAndPassword(this.state.user.email, this.state.user.password)
           .then(userCredentials => {
             return userCredentials.user.updateProfile({
-              displayName: this.state.name
+              displayName: this.state.user.name
             });
           })
           .catch(error => this.setState({ errorMessage: error.message }));
@@ -58,44 +81,31 @@ class Register extends React.Component {
           style={{ width, height, zIndex: 1 }}
         >
           <Block flex middle>
-            <Block style={styles.registerContainer}>
-              <Block flex={0.25} middle style={styles.socialConnect}>
-                <Text color="#8898AA" size={12}>
-                  Cadastrar usando
-                </Text>
-                <Block row style={{ marginTop: theme.SIZES.BASE }}>
-                  <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
-                    <Block row>
-                      <Icon
-                        name="facebook"
+          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
+            <Icon
+                  name="caret-left"
+                  family="AntDesign"
+                  size={20}
+                  color="#FFF"
+            />
+          </TouchableOpacity>
+            <Block style={styles.registerContainer}> 
+            <Text style={styles.greeting}>
+                  {`Olá,\nCadastre-se para iniciar!`}
+                </Text>   
+            <Block style={{alignItems:"center", width: "100%" }}>
+                    <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
+                      <Image source={{uri:this.state.user.avatar}} style={styles.avatar}/>
+                        <Icon
+                        name="camera"
                         family="AntDesign"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>Facebook</Text>
-                    </Block>
-                  </Button>
-                  <Button style={styles.socialButtons}>
-                    <Block row>
-                      <Icon
-                        name="google"
-                        family="AntDesign"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>Google</Text>
-                    </Block>
-                  </Button>
-                </Block>
-              </Block>
+                        size={30}
+                        color="#0001"
+                        style={{ marginTop: 6, marginRight: 2 }}
+                        />
+                  </TouchableOpacity>
+                  </Block>
               <Block flex>
-                <Block flex={0.1} middle>
-                  <Text color="#8898AA" size={12}>
-                  Ou inscreva-se da maneira clássica
-                  </Text>
-                </Block>
                 <Block flex center>
                   <KeyboardAvoidingView
                     style={{ flex: 1 }}
@@ -117,8 +127,8 @@ class Register extends React.Component {
                           />
                         }
                         autoCapitalize="none"
-                        onChangeText={name => this.setState({ name })}
-                        value={this.state.name}
+                        onChangeText={name => this.setState({ user : { ...this.state.user, name} })}
+                        value={this.state.user.name}
                       />
                     </Block>
                       <Block width={width * 0.8} style={{ marginBottom: 5 }}>
@@ -135,8 +145,8 @@ class Register extends React.Component {
                             />
                           }
                           autoCapitalize="none"
-                          onChangeText={email => this.setState({ email })}
-                          value={this.state.email}
+                          onChangeText={email => this.setState({ user : { ...this.state.user, email} })}
+                          value={this.state.user.email}
                         />
                       </Block>
 
@@ -155,8 +165,8 @@ class Register extends React.Component {
                           />
                         }
                         autoCapitalize="none"
-                        onChangeText={password => this.setState({ password })}
-                        value={this.state.password}
+                        onChangeText={password => this.setState({ user : { ...this.state.user, password} })}
+                        value={this.state.user.password}
                       />
                     </Block>
 
@@ -176,8 +186,8 @@ class Register extends React.Component {
                           />
                         }
                         autoCapitalize="none"
-                        onChangeText={phone => this.setState({ phone })}
-                        value={this.state.phone}
+                        onChangeText={phone => this.setState({ user : { ...this.state.user, phone} })}
+                        value={this.state.user.phone}
                       />
                     </Block>
 
@@ -241,8 +251,9 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   registerContainer: {
+    marginTop: 10,
     width: width * 0.9,
-    height: height * 0.80,
+    height: height * 0.85,
     backgroundColor: "#F4F5F7",
     borderRadius: 4,
     shadowColor: seekTheme.COLORS.BLACK,
@@ -290,7 +301,44 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     marginTop: 25,
     borderRadius: 100
+  },
+
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#FFF8",
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center"
+    
+  },
+
+  back:{
+    right: 135,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: "#FFF1",
+    alignItems:"center",
+    justifyContent:"center"	
+  },
+
+  greeting:{
+    marginTop: 20,
+    fontSize: 14,
+    fontWeight: "400",
+    textAlign: "center",
+    color:seekTheme.COLORS.BUTTON_COLOR,
+  },
+  
+  avatar:{
+    position:"absolute",
+    width: 100,
+    height: 100,
+    borderRadius: 50
   }
+
 });
 
 export default Register;

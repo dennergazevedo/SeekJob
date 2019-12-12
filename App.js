@@ -4,7 +4,6 @@ import {createStackNavigator} from 'react-navigation-stack'
 
 import * as firebase from 'firebase'
 
-import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Loading from "./screens/Loading";
