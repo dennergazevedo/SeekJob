@@ -80,7 +80,7 @@ class Register extends React.Component {
           source={Images.RegisterBackground}
           style={{ width, height, zIndex: 1 }}
         >
-          <Block flex middle>
+          <Block style={styles.blockcenter}>
           <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
             <Icon
                   name="caret-left"
@@ -90,7 +90,7 @@ class Register extends React.Component {
             />
           </TouchableOpacity>
             <Block style={styles.registerContainer}> 
-            <Text style={styles.greeting}>
+            <Text bold style={styles.greeting}>
                   {`Olá,\nCadastre-se para iniciar!`}
                 </Text>   
             <Block style={{alignItems:"center", width: "100%" }}>
@@ -106,7 +106,7 @@ class Register extends React.Component {
                   </TouchableOpacity>
                   </Block>
               <Block flex>
-                <Block flex center>
+                <Block flex center style={styles.blockcenter}>
                   <KeyboardAvoidingView
                     style={{ flex: 1 }}
                     behavior="padding"
@@ -201,7 +201,7 @@ class Register extends React.Component {
                       </Block>
 
 
-                    <Block center row width={width * 0.75}>
+                    <Block center row width={width * 0.75} style={styles.blockcenter}>
                       <Checkbox
                         label=""
                         checkboxStyle={{
@@ -324,9 +324,18 @@ const styles = StyleSheet.create({
     justifyContent:"center"	
   },
 
+  blockcenter:{
+    alignItems:"center",
+    borderRadius: 10,
+    justifyContent: "center",
+    marginBottom: 15,
+    marginTop: 35
+  },
+
   greeting:{
-    marginTop: 20,
-    fontSize: 14,
+    marginTop: 15,
+    marginBottom: 15,
+    fontSize: 16,
     fontWeight: "400",
     textAlign: "center",
     color:seekTheme.COLORS.BUTTON_COLOR,

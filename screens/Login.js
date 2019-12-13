@@ -9,7 +9,6 @@ import {
 import { Block, Button, Text, theme, Icon } from "galio-framework";
 
 import {KeyboardAvoidingView} from 'react-native';
-import { Platform } from 'react-native';
 
 const { height, width } = Dimensions.get("screen");
 
@@ -58,7 +57,7 @@ class Login extends React.Component {
                 <Image source={Images.LogoOnboarding} style={styles.logo} />
               </Block>
                 <Block style={styles.subTitle}>
-                  <Text color="white" size={12} onPress={() => navigation.navigate("Home")}>
+                  <Text color="white" size={15} onPress={() => navigation.navigate("Home")}>
                     Esqueceu sua senha?
                   </Text>
                 </Block>
