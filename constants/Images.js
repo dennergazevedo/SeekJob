@@ -3,7 +3,6 @@ const Onboarding = require("../assets/imgs/bg.png");
 const Logo = require("../assets/imgs/seekjob-logo.png");
 const LogoOnboarding = require("../assets/imgs/logo-seekjob-intro.png");
 const ProfileBackground = require("../assets/imgs/profile-screen-bg.png");
-const RegisterBackground = require("../assets/imgs/register-bg.png");
 const Pro = require("../assets/imgs/getPro-bg.png");
 const SeekLogo = require("../assets/imgs/seeklogo.png");
 const iOSLogo = require("../assets/imgs/ios.png");
@@ -33,7 +32,6 @@ export default {
   LogoFooter,
   ProfileBackground,
   ProfilePicture,
-  RegisterBackground,
   Viewed,
   Products,
   Pro,

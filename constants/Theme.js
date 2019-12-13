@@ -13,8 +13,8 @@ export default {
     INPUT: '#DCDCDC',
     INPUT_SUCCESS: '#7BDEB2',
     INPUT_ERROR: '#FCB3A4',
-    ACTIVE: '#5E72E4', //same as primary
-    BUTTON_COLOR: '#9C26B0', //wtf
+    ACTIVE: '#5E72E4',
+    BUTTON_COLOR: '#9C26B0',
     PLACEHOLDER: '#9FA5AA',
     SWITCH_ON: '#5E72E4',
     SWITCH_OFF: '#D4D9DD',

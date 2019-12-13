@@ -74,30 +74,22 @@ class Register extends React.Component {
       <Block flex middle>
         <StatusBar hidden />
         <ImageBackground
-          source={Images.RegisterBackground}
+          source={Images.Onboarding}
           style={{ width, height, zIndex: 1 }}
         >
           <Block style={styles.blockcenter}>
-          <TouchableOpacity style={styles.back} onPress={() => this.props.navigation.goBack()}>
-            <Icon
-                  name="caret-left"
-                  family="AntDesign"
-                  size={20}
-                  color="#FFF"
-            />
-          </TouchableOpacity>
             <Block style={styles.registerContainer}> 
             <Text bold style={styles.greeting}>
                   {`Olá,\nCadastre-se para iniciar!`}
                 </Text>   
-            <Block style={{alignItems:"center", width: "100%" }}>
+            <Block style={{alignItems:"center", width: "100%"}}>
                     <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
                       <Image source={{uri:this.state.user.avatar}} style={styles.avatar}/>
                         <Icon
                         name="camera"
                         family="AntDesign"
                         size={30}
-                        color="#0001"
+                        color="#0006"
                         style={{ marginTop: 6, marginRight: 2 }}
                         />
                   </TouchableOpacity>
@@ -206,14 +198,14 @@ class Register extends React.Component {
                         }}
                         value={this.state.check}
                         onChange={() => this.checkAlert()}
-                        color={seekTheme.COLORS.PRIMARY}
+                        color={seekTheme.COLORS.BUTTON_COLOR}
                       />
                       <Text 
                           style={{
                             marginLeft: 5
                           }}
                           size={14}
-                          color={seekTheme.COLORS.DEFAULT}>
+                          color={seekTheme.COLORS.BLACK}>
                             Eu concordo com os
                       </Text>
                       <Text style={{
@@ -221,12 +213,13 @@ class Register extends React.Component {
                           }}
                           bold
                           size={14}
-                          color={seekTheme.COLORS.PRIMARY}>
+                          color={seekTheme.COLORS.BUTTON_COLOR}>
                         Termos de Uso
                         </Text>
                     </Block>
                     <Block middle>
-                      <Button color="primary"
+                      <Button
+                      color="button_color"
                       style={styles.createButton}
                       onPress={this.handleSignUp}
                       >
@@ -234,6 +227,13 @@ class Register extends React.Component {
                           CRIAR CONTA
                         </Text>
                       </Button>
+                        <Text
+                          bold
+                          size={16}
+                          color={seekTheme.COLORS.BUTTON_COLOR}
+                          onPress={() => this.props.navigation.goBack()}>
+                            Voltar
+                        </Text>
                     </Block>
                   </KeyboardAvoidingView>
                 </Block>
@@ -297,6 +297,7 @@ const styles = StyleSheet.create({
   createButton: {
     width: width * 0.5,
     marginTop: 25,
+    marginBottom: 15,
     borderRadius: 100
   },
 
@@ -308,7 +309,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     justifyContent: "center",
     alignItems: "center"
-    
   },
 
   back:{
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     textAlign: "center",
-    color:seekTheme.COLORS.BUTTON_COLOR,
+    color:seekTheme.COLORS.BLACK
   },
   
   avatar:{

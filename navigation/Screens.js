@@ -91,9 +91,7 @@ const ProfileStack = createStackNavigator(
     Profile: {
       screen: Profile,
       navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header white transparent title="Profile" iconColor={'#FFF'} navigation={navigation} />
-        ),
+        header: null,
         headerTransparent: true
       })
     }

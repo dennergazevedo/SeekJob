@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Block, Button, Text, theme, Icon } from "galio-framework";
 
-import {KeyboardAvoidingView} from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 
 const { height, width } = Dimensions.get("screen");
 
@@ -19,120 +19,120 @@ import * as firebase from 'firebase';
 
 class Login extends React.Component {
   state = {
-    email:"",
-    password:"",
+    email: "",
+    password: "",
     errorMessage: null
   }
 
   handleLogin = () => {
-    const {email, password} = this.state;
-  
+    const { email, password } = this.state;
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .catch(error=> this.setState({ errorMessage: error.message }));
+      .catch(error => this.setState({ errorMessage: error.message }));
   };
-  
+
   render() {
-    
+
     const { navigation } = this.props;
 
     return (
       <Block flex style={styles.container}>
         <Block flex center>
-        <ImageBackground
+          <ImageBackground
             source={Images.Onboarding}
             style={{ height, width, zIndex: 1 }}
           />
         </Block>
         <Block flex space="between" style={styles.padded}>
-            <Block flex space="around" style={{ zIndex: 2 }}>
-            <KeyboardAvoidingView 
-              style={styles.containerStyle} 
-              behavior="padding" 
+          <Block flex space="around" style={{ zIndex: 2 }}>
+            <KeyboardAvoidingView
+              style={styles.containerStyle}
+              behavior="padding"
               enabled
               keyboardVerticalOffset={320}
             >
               <Block center>
                 <Image source={Images.LogoOnboarding} style={styles.logo} />
               </Block>
-                <Block style={styles.subTitle}>
-                  <Text color="white" size={15} onPress={() => navigation.navigate("Home")}>
-                    Esqueceu sua senha?
+              <Block style={styles.subTitle}>
+                <Text color="white" size={15} onPress={() => navigation.navigate("Home")}>
+                  Esqueceu sua senha?
                   </Text>
-                </Block>
-                  <Input 
-                    placeholder=" E-mail"
-                    autoCapitalize="none"
-                    onChangeText={email => this.setState({ email })}
-                    value = {this.state.email}
-                    iconContent={
-                      <Icon
-                        size={14}
-                        color={seekTheme.COLORS.ICON}
-                        name="user"
-                        family="AntDesign"
-                      />
-                    }
+              </Block>
+              <Input
+                placeholder=" E-mail"
+                autoCapitalize="none"
+                onChangeText={email => this.setState({ email })}
+                value={this.state.email}
+                iconContent={
+                  <Icon
+                    size={14}
+                    color={seekTheme.COLORS.ICON}
+                    name="user"
+                    family="AntDesign"
                   />
-                <Block>
-                  <Input 
-                    placeholder=" Senha"
-                    iconContent={
-                      <Icon
-                        size={14}
-                        color={seekTheme.COLORS.ICON}
-                        name="lock"
-                        family="AntDesign"
-                      />
-                    }
-                    secureTextEntry
-                    autoCapitalize="none"
-                    onChangeText={password => this.setState({ password })}
-                    value={this.state.password}
-                  />
-                </Block>
+                }
+              />
+              <Block>
+                <Input
+                  placeholder=" Senha"
+                  iconContent={
+                    <Icon
+                      size={14}
+                      color={seekTheme.COLORS.ICON}
+                      name="lock"
+                      family="AntDesign"
+                    />
+                  }
+                  secureTextEntry
+                  autoCapitalize="none"
+                  onChangeText={password => this.setState({ password })}
+                  value={this.state.password}
+                />
+              </Block>
 
-                <Block>
+              <Block>
                 {
-                this.state.errorMessage && 
+                  this.state.errorMessage &&
                   <Text
                     color="white"
                     size={14}
-                    >
-                      {this.state.errorMessage}
+                  >
+                    {this.state.errorMessage}
                   </Text>
-  }
-                </Block>
-
-                  <Block center>
-                    <Button
-                      style={styles.button}
-                      color={seekTheme.COLORS.SECONDARY}
-                      onPress={this.handleLogin}
-                      textStyle={{ color: seekTheme.COLORS.BLACK }}
-                    >
-                      <Text bold size={13} color={seekTheme.COLORS.BUTTON_COLOR}>
-                          Entrar
-                        </Text>
-                    </Button>
-                  </Block>
-                  
-                  <Block center>
-                    <Button
-                      style={styles.button}
-                      color={seekTheme.COLORS.BUTTON_COLOR}
-                      onPress={() => navigation.navigate("Register")}
-                      textStyle={{ color: seekTheme.COLORS.WHITE }}
-                    >
-                      <Text bold size={13} color={seekTheme.COLORS.WHITE}>
-                          Cadastre-se
-                        </Text>
-                    </Button>
-                  </Block>
-                </KeyboardAvoidingView>
+                }
               </Block>
-            </Block>
+
+              <Block center>
+                <Button
+                  style={styles.button}
+                  color={seekTheme.COLORS.SECONDARY}
+                  onPress={this.handleLogin}
+                  textStyle={{ color: seekTheme.COLORS.BLACK }}
+                >
+                  <Text bold size={14} color={seekTheme.COLORS.BUTTON_COLOR}>
+                    ENTRAR
+                        </Text>
+                </Button>
+              </Block>
+
+              <Block center>
+                <Button
+                  style={styles.button}
+                  color={seekTheme.COLORS.BUTTON_COLOR}
+                  onPress={() => navigation.navigate("Register")}
+                  textStyle={{ color: seekTheme.COLORS.WHITE }}
+                >
+                  <Text bold size={14} color={seekTheme.COLORS.WHITE}>
+                    CADASTRE-SE
+                        </Text>
+                </Button>
+              </Block>
+            </KeyboardAvoidingView>
+          </Block>
+        </Block>
       </Block>
     );
   }
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     width: width - theme.SIZES.BASE * 13,
-    height: theme.SIZES.BASE * 2.5,
+    height: theme.SIZES.BASE * 2.7,
     shadowRadius: 0,
     shadowOpacity: 0,
     borderRadius: 100
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginTop:'-5%'
+    marginTop: '-5%'
   },
   subTitle: {
     marginTop: 35,

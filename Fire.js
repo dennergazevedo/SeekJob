@@ -63,6 +63,7 @@ class Fire {
             db.set({
                 name: user.name,
                 email: user.email,
+                phone: user.phone,
                 avatar: null
             });
 

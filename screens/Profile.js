@@ -20,27 +20,30 @@ const { width, height } = Dimensions.get("screen");
 const thumbMeasure = (width - 48 - 32) / 3;
 
 class Profile extends React.Component {
-
   state = {
-    user:{},
+    user: {}
   };
 
   unsubscribe = null;
-  
-  componentDidMount(){
+
+  componentDidMount() {
     const user = this.props.uid || Fire.shared.uid;
 
-        this.unsubscribe = Fire.shared.firestore
-            .collection("users")
-            .doc(user)
-            .onSnapshot(doc => {
-                this.setState({ user: doc.data() });
-            });
+    this.unsubscribe = Fire.shared.firestore
+      .collection("users")
+      .doc(user)
+      .onSnapshot(doc => {
+        this.setState({ user: doc.data() });
+      });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
+
+  static navigationOptions = {
+    header: null
+  };
 
   render() {
     return (
@@ -53,17 +56,17 @@ class Profile extends React.Component {
           >
             <ScrollView
               showsVerticalScrollIndicator={false}
-              style={{ width, marginTop: '25%' }}
+              style={{ width, marginTop: "25%" }}
             >
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
                   <Image
-                      source={
-                          this.state.user.avatar
-                            ? { uri: this.state.user.avatar }
-                            : require("../assets/imgs/tempAvatar.png")
-                          }
-                      style={styles.avatar}
+                    source={
+                      this.state.user.avatar
+                        ? { uri: this.state.user.avatar }
+                        : require("../assets/imgs/tempAvatar.png")
+                    }
+                    style={styles.avatar}
                   />
                 </Block>
                 <Block style={styles.info}>
@@ -75,13 +78,13 @@ class Profile extends React.Component {
                   >
                     <Button
                       small
-                      style={{ backgroundColor: seekTheme.COLORS.INFO }}
+                      style={{ backgroundColor: seekTheme.COLORS.SUCCESS }}
                     >
                       Contratar
                     </Button>
                     <Button
                       small
-                      style={{ backgroundColor: seekTheme.COLORS.DEFAULT }}
+                      style={{ backgroundColor: seekTheme.COLORS.ACTIVE }}
                     >
                       Mensagem
                     </Button>
@@ -113,10 +116,14 @@ class Profile extends React.Component {
                 </Block>
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
-                    <Text bold size={28} color="#32325D">
-                    {this.state.user.name}, 27
+                    <Text bold size={28} color={seekTheme.COLORS.BLACK}>
+                      {this.state.user.name}, 27
                     </Text>
-                    <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
+                    <Text
+                      size={16}
+                      color={seekTheme.COLORS.BLACK}
+                      style={{ marginTop: 10 }}
+                    >
                       Monleweed, MG
                     </Text>
                   </Block>
@@ -126,7 +133,7 @@ class Profile extends React.Component {
                   <Block middle>
                     <Text
                       size={16}
-                      color="#525F7F"
+                      color={seekTheme.COLORS.BLACK}
                       style={{ textAlign: "center" }}
                     >
                       Programmer
@@ -136,7 +143,7 @@ class Profile extends React.Component {
                     row
                     style={{ paddingVertical: 14, alignItems: "baseline" }}
                   >
-                    <Text bold size={16} color="#525F7F">
+                    <Text bold size={16} color={seekTheme.COLORS.BLACK}>
                       Histórico
                     </Text>
                   </Block>
@@ -146,7 +153,7 @@ class Profile extends React.Component {
                   >
                     <Button
                       small
-                      color="transparent"
+                      color="WHITE"
                       textStyle={{ color: "#5E72E4", fontSize: 12 }}
                     >
                       Ver tudo
@@ -177,7 +184,6 @@ class Profile extends React.Component {
 const styles = StyleSheet.create({
   profile: {
     marginTop: Platform.OS === "android" ? -HeaderHeight : 0,
-    // marginBottom: -HeaderHeight * 2,
     flex: 1
   },
   profileContainer: {

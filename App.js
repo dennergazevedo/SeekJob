@@ -18,7 +18,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
 	Login: Login,
-  Register: Register,
+  Register: Register
 },
   {
   defaultNavigationOptions: {
@@ -47,7 +47,6 @@ const assetImages = [
   Images.LogoOnboarding,
   Images.Logo,
   Images.Pro,
-  Images.ArgonLogo,
   Images.iOSLogo,
   Images.androidLogo
 ];
