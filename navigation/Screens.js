@@ -17,6 +17,7 @@ import Notification from "../screens/Notification";
 import Contratar from "../screens/Contratar";
 import Contratando from "../screens/Contratando";
 import LogOut from "../screens/LogOut";
+import PassReset from "../screens/PassReset";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -164,6 +165,15 @@ const HomeStack = createStackNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} screen="Login" title="Login" />
+        )
+      })
+    },
+
+    PassReset: {
+      screen: PassReset,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="PassReset" title="PassReset"/>
         )
       })
     },

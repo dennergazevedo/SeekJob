@@ -5,36 +5,50 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Alert
 } from "react-native";
 import { Block, Button, Text, theme, Icon } from "galio-framework";
 
 const { height, width } = Dimensions.get("screen");
 
+import firebase from 'firebase';
+
 import seekTheme from "../constants/Theme";
 import Images from "../constants/Images";
 
-import * as firebase from 'firebase';
+class PassReset extends React.Component {
 
-class Login extends React.Component {
   state = {
-    email: "",
-    password: "",
-    errorMessage: null
-  }
-
-  handleLogin = () => {
-    const { email, password } = this.state;
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(error => this.setState({ errorMessage: error.message }));
+    email:"",
   };
 
-  render() {
+  resetPass = () => {
+    const { email } = this.state;
 
-    const { navigation } = this.props;
+    if(this.state.email == ""){
+      Alert.alert("Atenção!", "Digite o e-mail");
+    }
+    firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(function () {
+      alert('Reset de senha foi enviado para seu e-mail');
+    })
+    .catch(function (error) {
+      var errorCode = error.code;
+
+        if(errorCode == 'auth/invalid-email'){
+          Alert.alert('Atenção!','E-mail inválido!');
+        }else if (errorCode == 'auth/user-not-found'){
+          Alert.alert('Atenção!', 'E-mail não encontrado!');
+        }else{
+          console.log(error);
+    }
+  });
+}
+
+  render() {
 
     return (
       <Block flex style={styles.container}>
@@ -55,17 +69,8 @@ class Login extends React.Component {
               <Block center>
                 <Image source={Images.LogoOnboarding} style={styles.logo} />
               </Block>
-              <Block style={styles.subTitle}>
-                <Text
-                    color="white"
-                    size={15}
-                    onPress={() => navigation.navigate("PassReset")}>
-                  Esqueceu sua senha?
-                </Text>
-              </Block>
               <Input
                 placeholder=" E-mail"
-                autoCapitalize="none"
                 onChangeText={email => this.setState({ email })}
                 value={this.state.email}
                 iconContent={
@@ -77,60 +82,28 @@ class Login extends React.Component {
                   />
                 }
               />
-              <Block>
-                <Input
-                  placeholder=" Senha"
-                  iconContent={
-                    <Icon
-                      size={14}
-                      color={seekTheme.COLORS.ICON}
-                      name="lock"
-                      family="AntDesign"
-                    />
-                  }
-                  secureTextEntry
-                  autoCapitalize="none"
-                  onChangeText={password => this.setState({ password })}
-                  value={this.state.password}
-                />
-              </Block>
-
-              <Block>
-                {
-                  this.state.errorMessage &&
-                  <Text
-                    color="white"
-                    size={14}
-                  >
-                    {this.state.errorMessage}
-                  </Text>
-                }
-              </Block>
 
               <Block center>
                 <Button
                   style={styles.button}
                   color={seekTheme.COLORS.SECONDARY}
-                  onPress={this.handleLogin}
                   textStyle={{ color: seekTheme.COLORS.BLACK }}
-                >
+                  onPress={this.resetPass}>
                   <Text bold size={14} color={seekTheme.COLORS.BUTTON_COLOR}>
-                    ENTRAR
-                        </Text>
+                    RESETAR PASSWORD
+                    </Text>
                 </Button>
               </Block>
 
               <Block center>
-                <Button
-                  style={styles.button}
-                  color={seekTheme.COLORS.BUTTON_COLOR}
-                  onPress={() => navigation.navigate("Register")}
-                  textStyle={{ color: seekTheme.COLORS.WHITE }}
-                >
-                  <Text bold size={14} color={seekTheme.COLORS.WHITE}>
-                    CADASTRE-SE
-                        </Text>
-                </Button>
+                <Text
+                  style={styles.buttonBack}
+                  bold
+                  size={16}
+                  color={seekTheme.COLORS.WHITE}
+                  onPress={() => this.props.navigation.goBack()}>
+                  Voltar
+                </Text>
               </Block>
             </KeyboardAvoidingView>
           </Block>
@@ -151,7 +124,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   button: {
-    marginTop: 10,
+    marginTop: 25,
     width: width - theme.SIZES.BASE * 13,
     height: theme.SIZES.BASE * 2.7,
     shadowRadius: 0,
@@ -159,6 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   logo: {
+    marginBottom: 50,
     width: 113,
     height: 202,
     zIndex: 2,
@@ -169,10 +143,9 @@ const styles = StyleSheet.create({
   title: {
     marginTop: '-5%'
   },
-  subTitle: {
-    marginTop: 35,
-    marginLeft: 170,
+  buttonBack: {
+    marginTop: 15,
   },
 });
 
-export default Login;
+export default PassReset;

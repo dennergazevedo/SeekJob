@@ -73,7 +73,7 @@ class Fire {
                 db.set({ avatar: remoteUri }, { merge: true });
             }
         } catch (error) {
-            alert("Error: ", error);
+            alert(error);
         }
     };
 

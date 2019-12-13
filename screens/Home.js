@@ -2,27 +2,11 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
-import * as firebase from 'firebase';
-
 import { Card } from '../components';
 import articles from '../constants/articles';
 const { width } = Dimensions.get("screen");
 
 class Home extends React.Component {
-
-  state = {
-    email:"",
-    displayName:"",
-  };
-  
-  componentDidMount(){
-    const { email, displayName } = firebase.auth().currentUser;
-    this.setState({ email, displayName });
-  }
-  
-  signOutUser = () => {
-    firebase.auth().signOut();
-  }
 
   renderArticles = () => {
     return (
