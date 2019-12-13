@@ -13,7 +13,7 @@ import { Button } from "../components";
 import { Images, seekTheme } from "../constants";
 import { HeaderHeight } from "../constants/utils";
 
-import * as firebase from 'firebase';
+import Fire from "../Fire";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -22,13 +22,24 @@ const thumbMeasure = (width - 48 - 32) / 3;
 class Profile extends React.Component {
 
   state = {
-    email:"",
-    displayName:"",
+    user:{},
   };
+
+  unsubscribe = null;
   
   componentDidMount(){
-    const { email, displayName } = firebase.auth().currentUser;
-    this.setState({ email, displayName });
+    const user = this.props.uid || Fire.shared.uid;
+
+        this.unsubscribe = Fire.shared.firestore
+            .collection("users")
+            .doc(user)
+            .onSnapshot(doc => {
+                this.setState({ user: doc.data() });
+            });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {
@@ -47,8 +58,12 @@ class Profile extends React.Component {
               <Block flex style={styles.profileCard}>
                 <Block middle style={styles.avatarContainer}>
                   <Image
-                    source={{ uri: Images.ProfilePicture }}
-                    style={styles.avatar}
+                      source={
+                          this.state.user.avatar
+                            ? { uri: this.state.user.avatar }
+                            : require("../assets/imgs/tempAvatar.png")
+                          }
+                      style={styles.avatar}
                   />
                 </Block>
                 <Block style={styles.info}>
@@ -99,7 +114,7 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color="#32325D">
-                    {this.state.displayName}, 27
+                    {this.state.user.name}, 27
                     </Text>
                     <Text size={16} color="#32325D" style={{ marginTop: 10 }}>
                       Monleweed, MG

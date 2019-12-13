@@ -10,23 +10,13 @@ import {
   StyleSheet,
   StatusBar,
   Dimensions,
-  ActivityIndicator } from 'react-native';
+} from 'react-native';
 
-import * as firebase from 'firebase';
+import firebase from 'firebase'
 
 const { height, width } = Dimensions.get("screen");
 
 class LogOut extends React.Component {
-
-  state = {
-    email:"",
-    displayName:"",
-  };
-  
-  componentDidMount(){
-    const { email, displayName } = firebase.auth().currentUser;
-    this.setState({ email, displayName });
-  }
   
   signOutUser = () => {
     firebase.auth().signOut();
@@ -48,7 +38,8 @@ class LogOut extends React.Component {
         </Block>
         <Block flex space="between" style={styles.padded}>
               <Block center>
-                <Text style={styles.text}>Deseja realmente sair, {this.state.displayName}?</Text>
+                <Text style={styles.text}>Deseja realmente sair?</Text>
+                
                 <Button
                       style={styles.button}
                       color={seekTheme.COLORS.SECONDARY}
@@ -57,6 +48,16 @@ class LogOut extends React.Component {
                   >
                     Logout
                 </Button>
+                
+                <Button
+                      style={styles.button}
+                      color={seekTheme.COLORS.BUTTON_COLOR}
+                      onPress={() => this.props.navigation.goBack()}
+                      textStyle={{ color: seekTheme.COLORS.SECONDARY }}
+                  >
+                    Voltar
+                </Button>
+
               </Block>
               <Block center>
                 <Text style={styles.text}>

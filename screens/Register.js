@@ -6,11 +6,12 @@ import {
   StatusBar,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { Block, Checkbox, Text } from "galio-framework";
 
-import * as firebase from 'firebase';
+import Fire from "../Fire";
 
 import { Button, Icon, Input } from "../components";
 import { Images, seekTheme } from "../constants";
@@ -55,20 +56,16 @@ class Register extends React.Component {
     handleSignUp = () => {
       if(this.state.check === true){
         if(this.state.user.name != "" && this.state.user.phone != ""){
-          firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.state.user.email, this.state.user.password)
-          .then(userCredentials => {
-            return userCredentials.user.updateProfile({
-              displayName: this.state.user.name
-            });
-          })
-          .catch(error => this.setState({ errorMessage: error.message }));
+          if(this.state.user.avatar != null){
+            Fire.shared.createUser(this.state.user);
+          }else{
+            Alert.alert("Atenção!", "Você precisa adicionar uma foto!")
+          }
         }else{
-          alert('Preencha todos os dados!');
+          Alert.alert("Atenção!", 'Preencha todos os dados!')
         }
       }else{
-        alert('Você precisa concordar com os termos de uso!')
+        Alert.alert("Atenção!", "Você precisa concordar com os termos de uso!")
       }
     };
 
