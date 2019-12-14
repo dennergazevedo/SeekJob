@@ -64,6 +64,8 @@ class Fire {
                 name: user.name,
                 email: user.email,
                 phone: user.phone,
+                cidade: user.cidade,
+                school: user.school,
                 avatar: null
             });
 

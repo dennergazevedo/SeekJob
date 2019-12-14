@@ -60,7 +60,7 @@ class Register extends React.Component {
 
   handleSignUp = () => {
     if (this.state.check === true) {
-      if (this.state.user.name != "" && this.state.user.phone != "") {
+      if (this.state.user.name != "" && this.state.user.phone != "" && this.state.user.cidade != "" && this.state.user.school != "" && this.state.user.password != "") {
         if (this.state.user.avatar != null) {
           Fire.shared.createUser(this.state.user);
         } else {

@@ -5,9 +5,14 @@ import {
   ScrollView,
   Image,
   ImageBackground,
-  Platform
+  Platform,
+  TouchableOpacity
 } from "react-native";
 import { Block, Text, theme } from "galio-framework";
+
+import UserPermissions from "../utilities/UserPermissions";
+
+import * as ImagePicker from 'expo-image-picker'
 
 import { Button } from "../components";
 import { Images, seekTheme } from "../constants";
@@ -47,6 +52,20 @@ class Profile extends React.Component {
     header: null
   };
 
+  handlePickAvatar = async () => {
+    UserPermissions.getCameraPermission()
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3]
+    })
+
+    if (!result.cancelled) {
+      this.setState({ user: { ...this.state.user, avatar: result.uri } });
+    }
+  };
+
   render() {
     return (
       <Block flex style={styles.profile}>
@@ -61,15 +80,10 @@ class Profile extends React.Component {
               style={{ width, marginTop: "25%" }}
             >
               <Block flex style={styles.profileCard}>
-                <Block middle style={styles.avatarContainer}>
-                  <Image
-                    source={
-                      this.state.user.avatar
-                        ? { uri: this.state.user.avatar }
-                        : require("../assets/imgs/tempAvatar.png")
-                    }
-                    style={styles.avatar}
-                  />
+                <Block style={{ alignItems: "center", width: "100%" }}>
+                  <TouchableOpacity style={styles.avatarPlaceholder} onPress={this.handlePickAvatar}>
+                    <Image source={{ uri: this.state.user.avatar }} style={styles.avatar} />
+                  </TouchableOpacity>
                 </Block>
                 <Block style={styles.info}>
                   <Block
@@ -120,14 +134,14 @@ class Profile extends React.Component {
                 <Block flex>
                   <Block middle style={styles.nameInfo}>
                     <Text bold size={28} color={seekTheme.COLORS.BLACK}>
-                      {this.state.user.name}, 27
+                      {this.state.user.name}, 23
                     </Text>
                     <Text
                       size={16}
                       color={seekTheme.COLORS.BLACK}
                       style={{ marginTop: 10 }}
                     >
-                      Monleweed, MG
+                      {this.state.user.cidade}
                     </Text>
                   </Block>
                   <Block middle style={{ marginTop: 30, marginBottom: 16 }}>
@@ -154,6 +168,28 @@ class Profile extends React.Component {
                       <Text italic
                         style={styles.textProfile}>
                         {this.state.user.email}
+                      </Text>
+                    </Block>
+
+                    <Block style={styles.blockProfile}>
+                      <Icon name="phone"
+                        size={20}
+                        color="#FFF"
+                        style={styles.iconProfile} />
+                      <Text italic
+                        style={styles.textProfile}>
+                        {this.state.user.phone}
+                      </Text>
+                    </Block>
+
+                    <Block style={styles.blockProfileSchool}>
+                      <Icon name="bookmark"
+                        size={20}
+                        color="#FFF"
+                        style={styles.iconProfile} />
+                      <Text italic
+                        style={styles.textProfile}>
+                        {this.state.user.school}
                       </Text>
                     </Block>
 
@@ -262,6 +298,7 @@ const styles = StyleSheet.create({
     marginBottom: theme.SIZES.BASE,
     width: width - theme.SIZES.BASE * 2
   },
+
   perfil: {
     backgroundColor: "#FFF",
     marginTop: 10,
@@ -294,6 +331,17 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
 
+  blockProfileSchool: {
+    marginTop: 10,
+    backgroundColor: seekTheme.COLORS.BUTTON_COLOR,
+    borderRadius: 100,
+    flex: 1,
+    flexDirection: 'row',
+    width: 300,
+    height: 50,
+    alignItems: "center"
+  },
+
   iconProfile: {
     justifyContent: "flex-start",
     alignItems: "center",
@@ -305,7 +353,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     justifyContent: "flex-start",
     alignItems: "center"
-  }
+  },
+
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#FFF8",
+    marginTop: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
 
 });
 
