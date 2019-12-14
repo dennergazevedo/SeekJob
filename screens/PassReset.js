@@ -50,6 +50,8 @@ class PassReset extends React.Component {
 
   render() {
 
+    const { navigation } = this.props;
+
     return (
       <Block flex style={styles.container}>
         <Block flex center>
@@ -101,7 +103,7 @@ class PassReset extends React.Component {
                   bold
                   size={16}
                   color={seekTheme.COLORS.WHITE}
-                  onPress={() => this.props.navigation.goBack()}>
+                  onPress={() => navigation.navigate("Login")}>
                   Voltar
                 </Text>
               </Block>

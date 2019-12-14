@@ -13,6 +13,8 @@ import { Button } from "../components";
 import { Images, seekTheme } from "../constants";
 import { HeaderHeight } from "../constants/utils";
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import Fire from "../Fire";
 
 const { width, height } = Dimensions.get("screen");
@@ -85,6 +87,7 @@ class Profile extends React.Component {
                     <Button
                       small
                       style={{ backgroundColor: seekTheme.COLORS.ACTIVE }}
+                      onPress={this.onPressChat}
                     >
                       Mensagem
                     </Button>
@@ -131,13 +134,30 @@ class Profile extends React.Component {
                     <Block style={styles.divider} />
                   </Block>
                   <Block middle>
-                    <Text
-                      size={16}
-                      color={seekTheme.COLORS.BLACK}
-                      style={{ textAlign: "center" }}
-                    >
-                      Programmer
-                    </Text>
+
+                    <Block style={styles.blockProfile}>
+                      <Icon name="account-circle"
+                        size={20}
+                        color="#FFF"
+                        style={styles.iconProfile} />
+                      <Text italic
+                        style={styles.textProfile}>
+                        {this.state.user.name}
+                      </Text>
+                    </Block>
+
+                    <Block style={styles.blockProfile}>
+                      <Icon name="email"
+                        size={20}
+                        color="#FFF"
+                        style={styles.iconProfile} />
+                      <Text italic
+                        style={styles.textProfile}>
+                        {this.state.user.email}
+                      </Text>
+                    </Block>
+
+
                   </Block>
                   <Block
                     row
@@ -237,7 +257,56 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: thumbMeasure,
     height: thumbMeasure
+  },
+  button: {
+    marginBottom: theme.SIZES.BASE,
+    width: width - theme.SIZES.BASE * 2
+  },
+  perfil: {
+    backgroundColor: "#FFF",
+    marginTop: 10,
+    alignSelf: "center",
+    borderRadius: 50,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 8,
+    shadowOpacity: 0.2,
+  },
+  text: {
+    color: "#FFF",
+    textAlign: "left",
+  },
+  icon: {
+    alignItems: "center",
+    textAlign: "left",
+    flex: 1,
+    justifyContent: "flex-start"
+  },
+
+  blockProfile: {
+    marginTop: 10,
+    backgroundColor: seekTheme.COLORS.BUTTON_COLOR,
+    borderRadius: 100,
+    flex: 1,
+    flexDirection: 'row',
+    width: 300,
+    height: 30,
+    alignItems: "center"
+  },
+
+  iconProfile: {
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginLeft: 10
+  },
+
+  textProfile: {
+    color: "#FFF",
+    marginLeft: 10,
+    justifyContent: "flex-start",
+    alignItems: "center"
   }
+
 });
 
 export default Profile;

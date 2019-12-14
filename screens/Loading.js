@@ -51,7 +51,7 @@ class Loading extends React.Component {
                   <Text color="white" size={15} >
                       Loading
                   </Text>
-                  <ActivityIndicator size="large"></ActivityIndicator>
+                  <ActivityIndicator style={{marginTop: 10}}size="large" color="#FFF"></ActivityIndicator>
                 </Block>
 
               </Block>

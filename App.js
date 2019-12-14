@@ -18,7 +18,7 @@ const AppStack = createStackNavigator({
 
 const AuthStack = createStackNavigator({
 	Login: Login,
-  Register: Register
+  Register: Register,
 },
   {
   defaultNavigationOptions: {
